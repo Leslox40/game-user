@@ -18,6 +18,7 @@ class AddUser extends Component {
        this.setState((currentState) => ({
            ...currentState,
             user: {
+                ...currentState.user,
                 [name]: value
             },
         }));
@@ -31,7 +32,7 @@ class AddUser extends Component {
             }
         }
         return false;
-    }
+    };
 
     handleOnSubmit = (event) => {
         event.preventDefault();
@@ -44,7 +45,14 @@ class AddUser extends Component {
         this.setState(() => ({
             userExists,
         }));
-    }
+    };
+
+    isDisabled = () => {
+        const { firstName, lastName, username } = this.state.user;
+        console.log(lastName, username)
+
+        return firstName === '' || lastName === '' || username === '';
+    };
 
 
     render() {
@@ -74,7 +82,7 @@ class AddUser extends Component {
                         value={username}
                         onChange={this.handleChange}
                     />
-                    <button className='inner-item'>Add User</button>
+                    <button className='inner-item' disabled={this.isDisabled()}>Add User</button>
                 </form>
             </div>
         )
