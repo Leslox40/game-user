@@ -12,6 +12,7 @@ class AddUser extends Component {
         userExist: false,
     };
 
+    // Change user as data is being entered into the form
     handleChange = (event) => {
        const { name, value } = event.target;
 
@@ -24,6 +25,7 @@ class AddUser extends Component {
         }));
     };
 
+    // Check if a user already exist from the array of users passed as props from App component
     ifUserExists = (currentUsername) => {
         const users = this.props.users
         for (let user of users) {
@@ -34,6 +36,8 @@ class AddUser extends Component {
         return false;
     };
 
+    // Function sends the new through a callback passed as a prop from App component.
+    // This happens after checking if the user exist by calling ifuserExist Method
     handleOnSubmit = (event) => {
         event.preventDefault();
         const userExists = this.ifUserExists(this.state.user.username);
@@ -47,6 +51,7 @@ class AddUser extends Component {
         }));
     };
 
+    // Function disables button if all input fields don't have data
     isDisabled = () => {
         const { firstName, lastName, username } = this.state.user;
         console.log(lastName, username)
