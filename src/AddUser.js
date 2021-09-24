@@ -12,12 +12,46 @@ class AddUser extends Component {
         userExist: false,
     };
 
+    handleChange = (event) => {
+       const { name, value } = event.target;
+
+       this.setState((currentState) => ({
+           ...currentState,
+            user: {
+                [name]: value
+            },
+        }));
+    };
+
+    ifUserExists = (currentUsername) => {
+        const users = this.props.users
+        for (let user of users) {
+            if(user.username === currentUsername){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        const userExists = this.ifUserExists(this.state.user.username);
+
+        if(!userExists) {
+            this.props.onAddUser(this.state.user);
+        }
+
+        this.setState(() => ({
+            userExists,
+        }));
+    }
+
 
     render() {
         const { firstName, lastName, username } = this.state.user;
         return (
             <div className='box'>
-                <form>
+                <form onSubmit={this.handleOnSubmit}>
                     <input type='text'
                         className='inner-item'
                         placeholder='First Name'
@@ -46,3 +80,5 @@ class AddUser extends Component {
         )
     }
 }
+
+export default AddUser

@@ -1,30 +1,6 @@
 import React, { Component } from 'react'
 import './App.css';
-
-class AddUserForm extends Component {
-  render() {
-    return (
-      <div className='box'>
-        <form>
-          <input type='text'
-                  className='inner-item'
-                  placeholder='First Name'
-          
-          />
-          <input type='text'
-                  className='inner-item'
-                  placeholder='Last Name'
-          />
-          <input type='text'
-                  className='inner-item'
-                  placeholder='Username'
-          />
-          <button className='inner-item'>Add User</button>
-        </form>
-      </div>
-    );
-  }
-}
+import AddUser from './AddUser';
 
 class UserList extends Component {
   render() {
@@ -51,10 +27,21 @@ class User extends Component {
 }
 
 class App extends Component {
+  
+  state = {
+    users: [],
+  };
+
+  createNewUser = (newUser) => {
+    this.setState(currentState => ({
+      user: [...currentState.users, newUser]
+    }));
+  };
+
   render() {
     return (
       <div className="App">
-        <AddUserForm />
+        <AddUser onAddUser={this.createNewUser}/>
         <UserList />
       </div>
     )
