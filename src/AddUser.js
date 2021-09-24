@@ -61,6 +61,7 @@ class AddUser extends Component {
 
 
     render() {
+        // Destructuring state.user to have their values. values are used to render JSX
         const { firstName, lastName, username } = this.state.user;
         return (
             <div className='box'>
