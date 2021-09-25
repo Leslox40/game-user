@@ -1,19 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import AddUser from './AddUser';
-
-class UserList extends Component {
-  render() {
-    return (
-      <div className='box'>
-        <button className='inner-item'>Show the number of games played</button>
-        <ol className='inner-item'>
-          <User />
-        </ol>
-      </div>
-    );
-  }
-}
+import UserList from './UserList';
 
 class User extends Component {
   render() {
@@ -42,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <AddUser onAddUser={this.createNewUser}/>
-        <UserList />
+        <UserList users={this.state.users}/>
       </div>
     )
   }

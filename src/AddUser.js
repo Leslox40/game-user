@@ -12,7 +12,7 @@ class AddUser extends Component {
         userExist: false,
     };
 
-    // Change user as data is being entered into the form
+    // Change user property in state as data is being entered into the form
     handleChange = (event) => {
        const { name, value } = event.target;
 
@@ -93,6 +93,10 @@ class AddUser extends Component {
             </div>
         )
     }
+}
+
+AddUser.propTypes = {
+    ifUserExists: PropTypes.string.isRequired,
 }
 
 export default AddUser
