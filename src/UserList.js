@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import User from './User';
 
 class UserList extends Component {
     state = {
@@ -26,7 +27,7 @@ class UserList extends Component {
                 { users  && users.length > 0 ? showGamesPlayedButton : '' }
                 <ol className='inner-item'>
                    { users.map(user => (
-                        //<User key={user.username} showGamesPlayed={showGamesPlayed}/>
+                        <User key={user.username} showGamesPlayed={showGamesPlayed}/>
                     )) }
                 </ol>
             </div>
