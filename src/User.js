@@ -1,14 +1,14 @@
 import React from 'react'
 
 const User = (props) => {
-    render() {
-        return (
-            <li className='user'>
-                <p>username</p>
-                <p>Number of games played</p>
-            </li>
-        )
-    }
+    const { user, showGamesPlayed } = props;
+
+    return (
+        <li className='user'>
+            <p>username: {user.username}</p>
+            <p>Number of games played: { showGamesPlayed ? user.numGamesPlayed : '*' }</p>
+        </li>
+    )
 }
 
 export default User

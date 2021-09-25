@@ -3,16 +3,6 @@ import './App.css';
 import AddUser from './AddUser';
 import UserList from './UserList';
 
-class User extends Component {
-  render() {
-    return (
-      <li className='user'>
-        <p>username</p>
-        <p>Number of games played</p>
-      </li>
-    )
-  }
-}
 
 class App extends Component {
   
@@ -20,16 +10,18 @@ class App extends Component {
     users: [],
   };
 
+  // Update users Array state when a new user is sent through a callback passed in from AddUser component
   createNewUser = (newUser) => {
+    newUser.numGamesPlayed = 0;
     this.setState(currentState => ({
-      user: [...currentState.users, newUser]
+      users: [...currentState.users, newUser]
     }));
   };
 
   render() {
     return (
       <div className="App">
-        <AddUser onAddUser={this.createNewUser}/>
+        <AddUser onAddUser={this.createNewUser} users={this.state.users}/>
         <UserList users={this.state.users}/>
       </div>
     )
